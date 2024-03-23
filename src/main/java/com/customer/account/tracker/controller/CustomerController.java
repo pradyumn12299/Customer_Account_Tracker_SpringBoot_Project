@@ -13,7 +13,8 @@ public class CustomerController {
 	@Autowired
 	private AccountService accountService;
 	
+	@GetMapping("/api/profile")
 	public Customer getCustomerProfile(@RequestParam long aid) {
-		
+		return accountService.getAccountProfile(aid);
 	}
 }
