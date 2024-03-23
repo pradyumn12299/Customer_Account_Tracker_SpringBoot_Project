@@ -13,6 +13,7 @@ import com.customer.account.tracker.service.AccountService;
 @RestController
 @RequestMapping("/api")
 public class AccountController {
+	
 	@Autowired
 	private AccountService accountService;
 	
@@ -22,9 +23,24 @@ public class AccountController {
 		return account;
 	}
 	
-//	@GetMapping("/balance")
-//	public Double getBalance(@RequestBody Account account) {
-//		return accountService.getBalance(account.getAid());
-//	}
+	@GetMapping("/balance")
+	public Double getBalance(@RequestBody Account account) {
+		return accountService.getBalanace(account.getAid());
+	}
+	
+	@PutMapping("/updateBalance")
+	public Account updateBalance(@RequestBody Account account) {
+		return accountService.updateAccountbalance(account);
+	}
+	
+	@PutMapping("/withdraw")
+	public Account withdrawMoney(@RequestBody Account account){
+		return accountService.withdrawMoney(account);
+	}
+	
+	@PutMapping("/transferAmount")
+	public Account transferAmount(@RequestBody Account account, @RequestParam long toAccountId) {
+		return accountService.transferMoney(account, toAccountId);
+	}
 }
 
